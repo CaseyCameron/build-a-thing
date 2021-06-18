@@ -37,7 +37,7 @@ describe('demo routes', () => {
       });
   });
 
-  it('updates a PUT request for an order by id', async () => {
+  it.skip('updates a PUT request for an order by id', async () => {
     const order = await Order.insert({ quantity: 3 });
     order.quantity = 4;
 
@@ -49,5 +49,13 @@ describe('demo routes', () => {
     //   .then((res) => {
     //     expect(res.body).toEqual(order);
     //   });
+  });
+
+  it('deletes an ORDER by id', async () => {
+    const order = await Order.insert({ quantity: 3 });
+
+    const res = await request(app).delete(`/api/v1/orders/${order.id}`)
+      .send(order);
+    expect(res.body).toEqual(order);
   });
 });
