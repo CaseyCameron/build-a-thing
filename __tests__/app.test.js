@@ -30,7 +30,6 @@ describe('demo routes', () => {
     const order1 = await Order.insert({ quantity: 3 });
     const order2 = await Order.insert({ quantity: 4 });
     const order3 = await Order.insert({ quantity: 5 });
-
     return request(app)
       .get('/api/v1/orders')
       .then((res) => {
@@ -42,10 +41,13 @@ describe('demo routes', () => {
     const order = await Order.insert({ quantity: 3 });
     order.quantity = 4;
 
-    return request(app)
-      .put(`/api/v1/orders/${order.id}`)
-      .then((res) => {
-        expect(res.body).toEqual(order);
-      });
+    const res = await request(app).put(`/api/v1/orders/${order.id}`)
+      .send(order);
+    expect(res.body).toEqual(order);
+    // return request(app)
+    //   .put(`/api/v1/orders/${order.id}`)
+    //   .then((res) => {
+    //     expect(res.body).toEqual(order);
+    //   });
   });
 });
