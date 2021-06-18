@@ -4,7 +4,7 @@ import request from 'supertest';
 import app from '../lib/app.js';
 import Order from '../lib/models/Order.js';
 
-describe('demo routes', () => {
+describe.skip('demo routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
