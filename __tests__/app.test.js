@@ -26,4 +26,15 @@ describe('demo routes', () => {
       });
   });
 
+  it('creates a GET request for all orders', async () => {
+    const order1 = await Order.insert({ quantity: 3 });
+    const order2 = await Order.insert({ quantity: 4 });
+    const order3 = await Order.insert({ quantity: 5 });
+
+    return request(app)
+      .get('/api/v1/orders')
+      .then((res) => {
+        expect(res.body).toEqual([order1, order2, order3]);
+      });
+  });
 });
