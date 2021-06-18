@@ -37,4 +37,15 @@ describe('demo routes', () => {
         expect(res.body).toEqual([order1, order2, order3]);
       });
   });
+
+  it('updates a PUT request for an order by id', async () => {
+    const order = await Order.insert({ quantity: 3 });
+    order.quantity = 4;
+
+    return request(app)
+      .put(`/api/v1/orders/${order.id}`)
+      .then((res) => {
+        expect(res.body).toEqual(order);
+      });
+  });
 });
