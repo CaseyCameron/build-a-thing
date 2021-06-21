@@ -9,7 +9,7 @@ describe('demo routes', () => {
     return setup(pool);
   });
 
-  it.skip('creates a new order and sends a text message', async () => {
+  it('creates a new order and sends a text message', async () => {
     const res = await request(app)
       .post('/api/v1/orders')
       .send({ quantity: 10 });
@@ -37,7 +37,7 @@ describe('demo routes', () => {
       });
   });
 
-  it.skip('updates a PUT request for an order by id', async () => {
+  it('updates a PUT request for an order by id', async () => {
     const order = await Order.insert({ quantity: 3 });
     order.quantity = 4;
 
